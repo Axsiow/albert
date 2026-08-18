@@ -1,0 +1,46 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "albert/qwen3-coder-30b-A3b-instruct",
+  "provider": {
+    "albert": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Albert API (DINUM)",
+      "options": {
+        "apiKey": "{file:~/.config/opencode/albert-key}",
+        "baseURL": "https://albert.api.etalab.gouv.fr/v1"
+      },
+      "models": {
+        "qwen3-coder-30b-A3b-instruct": {
+          "name": "qwen3-coder-30b-A3b-instruct",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          },
+          "options": {
+            "chat_template_kwargs": {
+              "thinking": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "model": "albert/qwen3-coder-30b-A3b-instruct",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true
+      }
+    },
+    "plan": {
+      "model": "albert/qwen3-coder-30b-A3b-instruct"
+    }
+  }
+}
